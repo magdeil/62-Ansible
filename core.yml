@@ -6,7 +6,7 @@
 
   tasks:
     - name: "Create VLANs"
-      ios_command:
+      cisco.ios.ios_command:
         commands:
           - configure terminal
           - vlan 10
