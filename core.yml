@@ -1,15 +1,12 @@
 ---
 - name: Configure VLANs, DHCP Pools, and Interface Ports
-  hosts: switch  # Replace with the appropriate host or group
-  gather_facts: no  # Disable fact gathering for network devices
-  become: yes  # Use privilege escalation to execute commands as a privileged user (if needed)
+  hosts: switch
+  gather_facts: no
+  become: yes
 
-  collections:
-    - cisco.ios
-    
   tasks:
     - name: "Create VLANs"
-      cisco.ios.ios_config:
+      ios_config:  # Changed from ios_command to ios_config for configuration changes
         commands:
           - configure terminal
           - vlan 10
@@ -22,5 +19,5 @@
           - name VOICEVLAN
           - exit
       vars:
-        ansible_network_os: cisco.ios.ios  # Specify the network OS (Cisco IOS)
+        ansible_network_os: ios  # Specify the network OS (Cisco IOS)
       register: result_create_vlans
