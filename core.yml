@@ -6,7 +6,7 @@
 
   tasks:
      -name: "Create VLANs"
-      cisco.ios.ios_config:  # Changed from ios_command to ios_config for configuration changes
+      ios_command:  # Changed from ios_command to ios_config for configuration changes
         commands:
           - vlan 10
           - name WIFIVLAN
