@@ -1,12 +1,12 @@
 ---
 - name: Configure VLANs, DHCP Pools, and Interface Ports
-  hosts: switch
-  gather_facts: no
-  become: yes
+  hosts: switch  # Replace with the appropriate host or group
+  gather_facts: no  # Disable fact gathering for network devices
+  become: yes  # Use privilege escalation to execute commands as a privileged user (if needed)
 
   tasks:
     - name: "Create VLANs"
-      ios_config:  # Changed from ios_command to ios_config for configuration changes
+      ios_command:
         commands:
           - configure terminal
           - vlan 10
