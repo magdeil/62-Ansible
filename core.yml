@@ -5,7 +5,7 @@
   become: yes  # Use privilege escalation to execute commands as a privileged user (if needed)
 
   tasks:
-    - name: Create VLANs
+    - name: "Create VLANs"
       ios_command:
         commands:
           - configure terminal
