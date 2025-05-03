@@ -177,7 +177,7 @@ crypto key generate rsa general-keys modulus 2048
 @@CUCM
 
 config t
-hostname CUCM_
+hostname CUCM_62
 enable secret pass
 service password-encryption
 no logging console
@@ -286,7 +286,7 @@ TRY THE SSH CONNECTION
 
 CORE BABA 
 
-ssh -oKexAlgorithms=+diffie-hellman-group1-sha1 -c aes256-cbc admin@10._.1.4
+ssh -oKexAlgorithms=+diffie-hellman-group1-sha1 -c aes256-cbc admin@10.62.1.4
 
 ************************************************************************
 Create Alias on Linux - FOR COREBABA
@@ -299,22 +299,22 @@ ssh_short admin@10.12.1.4
 
 **************************************************************************
 
-ssh admin@10._.12.100.8
-ssh admin@10._._.1
+ssh admin@10.62.12.100.8
+ssh admin@10.62.62.1
 
 ************************************************************************
 OPEN CMD ON WINDOWS SEVER
 
-route add 10.0.0.0 mask 255.0.0.0 10._.1.4
-route add 200.0.0.0 mask 255.255.255.0 10._.1.4
+route add 10.0.0.0 mask 255.0.0.0 10.62.1.4
+route add 200.0.0.0 mask 255.255.255.0 10.62.1.4
 ************************************************************************
 
 
 REMOVE SSH 
 
-ssh-keygen -f "/root/.ssh/known_hosts" -R "10._.1.4"
-ssh-keygen -f "/root/.ssh/known_hosts" -R "10._.100.8"
-ssh-keygen -f "/root/.ssh/known_hosts" -R "10._._.1"
+ssh-keygen -f "/root/.ssh/known_hosts" -R "10.62.1.4"
+ssh-keygen -f "/root/.ssh/known_hosts" -R "10.62.100.8"
+ssh-keygen -f "/root/.ssh/known_hosts" -R "10.62.62.1"
 
 
 
