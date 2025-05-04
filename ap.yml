@@ -1,10 +1,10 @@
 ---
-- name: Configure ACCESS POINT
-  hosts: ap
-  gather_facts: no
-  become: yes
+#- name: Configure ACCESS POINT
+#  hosts: ap
+#  gather_facts: no
+#  become: yes
 
-#  tasks:
+  tasks:
     - name: Configure CISCO AP
       ios_command:
         commands:
