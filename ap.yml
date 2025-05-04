@@ -1,23 +1,30 @@
 ---
-- name: Configure ACCESS POINT
+- name: Configure ACCESS POINT via Telnet
   hosts: ap
   gather_facts: no
   become: yes
+  connection: network_cli
+  vars:
+    ansible_network_os: ios
+    ansible_connection: network_cli
 
   tasks:
-    - name: Configure CISCO AP
-      ios_command:
-        commands:
+    - name: Configure CISCO AP via Telnet
+      ios_config:
+        lines:
           - no Dot11 ssid _wifi
           - Dot11 ssid _wifi
           - authentication open
           - authentication key-management wpa
           - wpa-psk ascii C1sc0123
           - guest-mode
-          - int Dot11Radio 0
+        parents: []
+        
+    - name: Configure Dot11Radio interface
+      ios_config:
+        lines:
           - channel 9
-          - no shut
+          - no shutdown
           - encryption mode ciphers tkip
           - ssid _wifi
-      vars:
-        ansible_network_os: ios
+        parents: interface Dot11Radio 0
