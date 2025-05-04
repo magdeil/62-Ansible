@@ -17,8 +17,8 @@
           'Password:': "{{ ap_password }}"
           'AP#': |
             configure terminal
-            no Dot11 ssid _wifi
-            Dot11 ssid _wifi
+            no Dot11 ssid 62_Rivan
+            Dot11 ssid 62_Rivan
             authentication open
             authentication key-management wpa
             wpa-psk ascii C1sc0123
@@ -27,7 +27,7 @@
             channel 9
             no shut
             encryption mode ciphers tkip
-            ssid _wifi
+            ssid 62_rivan
             end
             write memory
       register: telnet_output
