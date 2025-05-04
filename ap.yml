@@ -33,7 +33,6 @@
         exit
         end
         write memory
-    timeout: 30  # Increase timeout if needed
       vars:
         ap: 10.62.10.3
         ansible_user: admin
