@@ -9,25 +9,36 @@
     ap_password: pass
 
   tasks:
-    - name: Send commands to Cisco AP via Telnet
+    - name: Send configuration via Telnet
       expect:
         command: "telnet {{ ap_host }}"
         responses:
           'Username:': "{{ ap_username }}"
           'Password:': "{{ ap_password }}"
-          'ap#': |
+          'AP>': "enable\n"
+          'Password:': "{{ ap_password }}"
+          'AP#': |
             configure terminal
-            no Dot11 ssid 62_Rivan
-            Dot11 ssid 62_Rivan
+            hostname aironet-62
+            dot11 ssid 62_Rivan_Steavher
+            vlan 62
             authentication open
             authentication key-management wpa
             wpa-psk ascii C1sc0123
             guest-mode
+            default interface Dot11Radio 0
+            default interface gigabitEthernet 0
             interface Dot11Radio 0
-            channel 9
             no shut
+            channel 9
             encryption mode ciphers tkip
-            ssid 62_rivan
+            encryption vlan 10 mode ciphers tkip
+            ssid 62_Rivan_Steavher
+            exit
+            interface Dot11Radio 0.10
+            encapsulation dot1q 10 native
+            bridge-group 1
+            exit
             end
             write memory
       register: telnet_output
