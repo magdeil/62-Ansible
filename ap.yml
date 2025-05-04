@@ -16,8 +16,6 @@
         responses:
           'Username:': "{{ ap_username }}"
           'Password:': "{{ ap_password }}"
-          'AP>': "enable\n"
-          'Password:': "{{ ap_password }}"
           'AP#': |
             configure terminal
             no Dot11 ssid _wifi
