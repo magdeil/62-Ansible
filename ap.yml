@@ -16,7 +16,7 @@
           'Username:': "{{ ap_username }}"
           'Password:': "{{ ap_password }}"
           'aironet-62#': |
-            hostname aironet-62
+            hostname ap
             dot11 ssid 62_Rivan_Steavher
             vlan 62
             authentication open
