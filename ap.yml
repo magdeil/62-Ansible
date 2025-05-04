@@ -1,41 +1,23 @@
-- name: Configure Cisco AP via Telnet
+---
+- name: Configure ACCESS POINT
   hosts: ap
   gather_facts: no
-  
+  become: yes
+
   tasks:
-    - name: Send configuration commands
-      ansible.netcommon.telnet:
-        user: "{{ ansible_user }}"
-        password: "{{ ansible_password }}"
-        login_prompt: "Username:"
-        password_prompt: "Password:"
-        prompts:
-          - 'ap#'
-        commands:
-          - configure terminal
-          - dot11 ssid 62_Rivan_Steavher
-          - vlan 10
+    - name: Configure CISCO AP
+      ios_config:
+        lines:
+          - no Dot11 ssid _wifi
+          - Dot11 ssid _wifi
           - authentication open
           - authentication key-management wpa
-          - wpa-psk ascii Cisc@123
+          - wpa-psk ascii C1sc0123
           - guest-mode
-          - default interface Dot11Radio 0
-          - default interface gigabitethernet 0
-          - interface Dot11Radio 0
-          - no shutdown
+          - int Dot11Radio 0
           - channel 9
+          - no shut
           - encryption mode ciphers tkip
-          - encryption vlan 10 mode ciphers tkip
-          - ssid 62_Rivan_Steavher
-          - exit
-          - interface Dot11Radio 0.10
-          - encapsulation dot1q 10 native
-          - bridge-group 1
-          - exit
-          - end
-          - write memory
-      register: telnet_result
-
-    - name: Show Telnet output
-      debug:
-        var: telnet_result
+          - ssid _wifi
+      vars:
+        ansible_network_os: ios
