@@ -16,6 +16,7 @@
           'Username:': "{{ ap_username }}"
           'Password:': "{{ ap_password }}"
           'aironet-62#': |
+            configure terminal
             hostname ap
             dot11 ssid 62_Rivan_Steavher
             vlan 62
