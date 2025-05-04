@@ -1,6 +1,6 @@
 ---
 - name: Configure Cisco AP via Telnet
-  hosts: ap
+  hosts: localhost
   gather_facts: no
 
   vars:
