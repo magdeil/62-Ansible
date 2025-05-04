@@ -3,9 +3,6 @@
   hosts: ap
   gather_facts: no
 
-  vars:
-    ansible_user: admin
-    ansible_pass: pass
 
   tasks:
     - name: Access Point via Telnet
@@ -37,6 +34,10 @@
             exit
             end
             write memory
+      vars:
+        ansible_user: admin
+        ansible_pass: pass
+
       register: telnet_output
       
     - name: Show Telnet output
