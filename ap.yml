@@ -4,42 +4,41 @@
   gather_facts: no
 
 
-  tasks:
-    - name: Access Point via Telnet
-      expect:
-        command: "telnet {{ ap }}"
-        responses:
-          'Username:': "{{ ansible_user }}"
-          'Password:': "{{ ansible_pass }}"
-          'ap#': |
-            configure terminal
-            dot11 ssid 62_Rivan_Steavher
-            vlan 10
-            authentication open
-            authentication key-management wpa
-            wpa-psk ascii C1sc0123
-            guest-mode
-            default interface Dot11Radio 0
-            default interface gigabitEthernet 0
-            interface Dot11Radio 0
-            no shut
-            channel 9
-            encryption mode ciphers tkip
-            encryption vlan 10 mode ciphers tkip
-            ssid 62_Rivan_Steavher
-            exit
-            interface Dot11Radio 0.10
-            encapsulation dot1q 10 native
-            bridge-group 1
-            exit
-            end
-            write memory
-      vars:
-        ap: 10.62.10.3
-        ansible_user: admin
-        ansible_pass: pass
-
-      register: telnet_output
+- name: Access Point via Telnet
+  expect:
+    command: "telnet {{ ap }}"
+    responses:
+      'Username:': "{{ ansible_user }}"
+      'Password:': "{{ ansible_pass }}"
+      'ap#': |
+        configure terminal
+        dot11 ssid 62_Rivan_Steavher
+        vlan 10
+        authentication open
+        authentication key-management wpa
+        wpa-psk ascii C1sc0123
+        guest-mode
+        default interface Dot11Radio 0
+        default interface gigabitEthernet 0
+        interface Dot11Radio 0
+        no shut
+        channel 9
+        encryption mode ciphers tkip
+        encryption vlan 10 mode ciphers tkip
+        ssid 62_Rivan_Steavher
+        exit
+        interface Dot11Radio 0.10
+        encapsulation dot1q 10 native
+        bridge-group 1
+        exit
+        end
+        write memory
+    timeout: 30  # Increase timeout if needed
+  vars:
+    ap: 10.62.10.3
+    ansible_user: admin
+    ansible_pass: pass
+  register: telnet_output
       
     - name: Show Telnet output
       debug:
