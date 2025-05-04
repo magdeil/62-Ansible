@@ -2,19 +2,19 @@
 - name: Configure Cisco AP via Telnet
   hosts: ap
   gather_facts: no
+  become: no
 
   vars:
-    ap_host: 10.62.10.3
-    ap_username: admin
-    ap_password: pass
+    ansible_user: admin
+    ansible_pass: pass
 
   tasks:
-    - name: Send configuration via Telnet
+    - name: Access Point via Telnet
       expect:
-        command: "telnet {{ ap_host }}"
+        command: "telnet {{ ap }}"
         responses:
-          'Username:': "{{ ap_username }}"
-          'Password:': "{{ ap_password }}"
+          'Username:': "{{ ansible_user }}"
+          'Password:': "{{ ansible_pass }}"
           'ap#': |
             configure terminal
             dot11 ssid 62_Rivan_Steavher
