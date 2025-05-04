@@ -6,8 +6,8 @@
 
   tasks:
     - name: Configure CISCO AP
-      ios_config:
-        lines:
+      ios_command:
+        commands:
           - no Dot11 ssid 62_wifi
           - Dot11 ssid 62_wifi
           - authentication open
