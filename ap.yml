@@ -15,7 +15,7 @@
         responses:
           'Username:': "{{ ap_username }}"
           'Password:': "{{ ap_password }}"
-          'AP#': |
+          'ap#': |
             configure terminal
             no Dot11 ssid 62_Rivan
             Dot11 ssid 62_Rivan
