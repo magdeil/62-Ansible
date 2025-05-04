@@ -1,11 +1,10 @@
----
 - name: Configure Cisco AP via Telnet
   hosts: ap
   gather_facts: no
-
+  
   tasks:
-    - name: Send configuration commands via Telnet
-      telnet:
+    - name: Send configuration commands
+      ansible.netcommon.telnet:
         user: "{{ ansible_user }}"
         password: "{{ ansible_password }}"
         login_prompt: "Username:"
@@ -35,9 +34,6 @@
           - exit
           - end
           - write memory
-      vars:
-        ansible_user: admin
-        ansible_password: pass  # Fixed variable name (was ansible_pass)
       register: telnet_result
 
     - name: Show Telnet output
