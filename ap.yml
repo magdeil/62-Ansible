@@ -6,7 +6,7 @@
 
 #  tasks:
     - name: Configure CISCO AP
-      ios_config:
+      ios_command:
         commands:
           - no Dot11 ssid _wifi
           - Dot11 ssid _wifi
