@@ -15,9 +15,7 @@
         responses:
           'Username:': "{{ ap_username }}"
           'Password:': "{{ ap_password }}"
-          'AP>': "enable\n"
-          'Password:': "{{ ap_password }}"
-          'AP#': |
+          'ap#': |
             configure terminal
             hostname aironet-62
             dot11 ssid 62_Rivan_Steavher
