@@ -34,11 +34,11 @@
         end
         write memory
     timeout: 30  # Increase timeout if needed
-  vars:
-    ap: 10.62.10.3
-    ansible_user: admin
-    ansible_pass: pass
-  register: telnet_output
+      vars:
+        ap: 10.62.10.3
+        ansible_user: admin
+        ansible_pass: pass
+      register: telnet_output
       
     - name: Show Telnet output
       debug:
