@@ -1,24 +1,36 @@
 ---
-- name: Configure ACCESS POINT
+- name: Configure Cisco AP via Telnet (using expect)
   hosts: ap
   gather_facts: no
   become: yes
 
+  vars:
+    ap_host: 10.62.10.3
+    ap_username: admin
+    ap_password: pass
+
   tasks:
-    - name: Configure CISCO AP
-      netcommon.telnet:
-        commands:
-          - no Dot11 ssid _wifi
-          - Dot11 ssid _wifi
-          - authentication open
-          - authentication key-management wpa
-          - wpa-psk ascii C1sc0123
-          - guest-mode
-          - int Dot11Radio 0
-          - channel 9
-          - no shut
-          - encryption mode ciphers tkip
-          - ssid _wifi
-      vars:
-        ansible_network_os: ios
-        
+    - name: Send commands to Cisco AP via Telnet
+      expect:
+        command: "telnet {{ ap_host }}"
+        responses:
+          'Username:': "{{ ap_username }}"
+          'Password:': "{{ ap_password }}"
+          'AP>': "enable\n"
+          'Password:': "{{ ap_password }}"
+          'AP#': |
+            configure terminal
+            no Dot11 ssid _wifi
+            Dot11 ssid _wifi
+            authentication open
+            authentication key-management wpa
+            wpa-psk ascii C1sc0123
+            guest-mode
+            interface Dot11Radio 0
+            channel 9
+            no shut
+            encryption mode ciphers tkip
+            ssid _wifi
+            end
+            write memory
+      register: telnet_output
