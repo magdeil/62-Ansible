@@ -2,7 +2,6 @@
 - name: Configure Cisco AP via Telnet
   hosts: ap
   gather_facts: no
-  become: no
 
   vars:
     ansible_user: admin
