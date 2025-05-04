@@ -21,4 +21,4 @@
           - ssid _wifi
       vars:
         ansible_network_os: ios
-        ansible_connection: telnet
+        
