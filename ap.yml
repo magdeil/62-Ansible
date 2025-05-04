@@ -31,3 +31,7 @@
             end
             write memory
       register: telnet_output
+      
+    - name: Show Telnet output
+      debug:
+        var: telnet_output.stdout
