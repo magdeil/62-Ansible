@@ -1,15 +1,15 @@
 ---
-- name: Configure ACCESS POINT
-  hosts: ap
-  gather_facts: no
-  become: yes
+#- name: Configure ACCESS POINT
+#  hosts: ap
+#  gather_facts: no
+#  become: yes
 
-  tasks:
+#  tasks:
     - name: Configure CISCO AP
-      ios_command:
-        commands:
-          - no Dot11 ssid 62_wifi
-          - Dot11 ssid 62_wifi
+      ios_config:
+        lines:
+          - no Dot11 ssid _-wifi
+          - Dot11 ssid _-wifi
           - authentication open
           - authentication key-management wpa
           - wpa-psk ascii C1sc0123
@@ -18,6 +18,6 @@
           - channel 9
           - no shut
           - encryption mode ciphers tkip
-          - ssid 62_wifi
+          - ssid _-wifi
       vars:
         ansible_network_os: ios
