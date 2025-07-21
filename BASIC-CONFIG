@@ -116,7 +116,7 @@ ansible_network_os=ios
 @@COREbaba
 
 config t
-hostname COREbaba_62
+hostname COREbaba-82
 enable secret pass
 service password-encryption
 no logging console
@@ -177,7 +177,7 @@ crypto key generate rsa general-keys modulus 2048
 @@CUCM
 
 config t
-hostname CUCM_62
+hostname CUCM-62
 enable secret pass
 service password-encryption
 no logging console
